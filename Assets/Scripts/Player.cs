@@ -15,6 +15,13 @@ namespace Golf
         public Transform helper;
 
         private Vector3 m_lastPosition;
+        private Vector3 m_startRotation;
+
+        private void Start()
+        {
+            m_startRotation = stick.localEulerAngles;
+        }
+
         private void Update()
         {
             m_lastPosition = helper.position;
@@ -23,7 +30,7 @@ namespace Golf
 
             Quaternion rot = stick.localRotation;
 
-            Quaternion toRot = Quaternion.Euler(0, 0, m_isDown ? range : -range);
+            Quaternion toRot = Quaternion.Euler(m_isDown ? m_startRotation.x + range : m_startRotation.x - range, m_startRotation.y, m_startRotation.z);
 
             rot = Quaternion.RotateTowards(rot, toRot, speed * Time.deltaTime);
             stick.localRotation = rot;

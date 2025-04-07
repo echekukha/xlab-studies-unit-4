@@ -41,6 +41,7 @@ namespace Golf
 
         private void OnEnable()
         {
+            GameEvents.onCollisionStones += GameOver;
             GameEvents.onStickHit += OnStickHit;
             score = 0;
 
@@ -48,8 +49,8 @@ namespace Golf
 
         private void OnDisable()
         {
+            GameEvents.onCollisionStones -= GameOver;
             GameEvents.onStickHit -= OnStickHit;
-
         }
 
         private void OnStickHit()
@@ -76,6 +77,11 @@ namespace Golf
         { 
             m_delay = UnityEngine.Random.Range(delayMin, delayMax);
             delayMax = Mathf.Max(delayMin, delayMax - delayStep);
+        }
+
+        private void GameOver()
+        {
+            enabled = false;
         }
 
         IEnumerator WaitEvent(System.Action callback)
