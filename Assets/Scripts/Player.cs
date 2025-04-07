@@ -26,7 +26,7 @@ namespace Golf
         {
             m_lastPosition = helper.position;
 
-            m_isDown = Input.GetMouseButton(0);
+            //m_isDown = Input.GetMouseButton(0);
 
             Quaternion rot = stick.localRotation;
 

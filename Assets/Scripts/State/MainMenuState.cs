@@ -21,7 +21,7 @@ namespace Golf
         {
             base.OnEnable();
 
-            scoreText.text = $" HScore : {LevelContr.hightScore}";
+            scoreText.text = $" High Score: {LevelContr.hightScore}";
         }
     }
 }
